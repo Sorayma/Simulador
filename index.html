@@ -9,13 +9,21 @@
 </head>
 
 <body>
+    <div id="alertas" style="display: none;"></div>
     <form method="post">
         <label for="n1">Ingrese un número:</label>
         <input type="number" id="n1">
         <label for="n2">Ingrese otro número:</label>
         <input type="number" id="n2">
-        <label for="buscar">Buscar acción</label>
-        <input type="text" id="buscar">
+        <label for="seleccion">Selecciona una acción</label>
+        <div class="select">
+            <select id="seleccion" name="b">
+                <option value="suma">Suma</option>
+                <option value="resta">Resta</option>
+                <option value="multiplicación">Multiplicación</option>
+                <option value="dividir">División</option>
+            </select>
+        </div>
         <div>
             <button type="button" onclick="sumar()">Sumar</button>
             <button type="button" onclick="restar()">Restar</button>
@@ -24,6 +32,8 @@
             <button type="button" onclick="mensaje()">Tabla de multiplicar</button>
             <button type="button" onclick="moves()">Acciones</button>
             <button type="button" onclick="search()">Buscar</button>
+            <button type="button" onclick="perfil()">Perfil</button>
+            <button type="button" onclick="info()">Usuarios</button>
         </div>
     </form>
     <h1>Acciones realizadas por el usuario:</h1>

@@ -1,33 +1,55 @@
-let acciones = []
+let acciones = [] //acciones se almacenara en localStorage
+// clave: acciones - valor: let acciones
+let alerta = document.getElementById("alertas");
+
 function sumar() {
     let n1 = parseInt(document.getElementById("n1").value);
     let n2 = parseInt(document.getElementById("n2").value);
     let resultado = 0;
     if (isNaN(n1) || isNaN(n2)) {
-        alert("debe ingresar dos números")
+        alerta.style.display = "inline-block";
+        alerta.innerHTML = "Debe ingresar dos números" //remplazo de alert();
+        // alert("debe ingresar dos números")
     }
     else {
         resultado = n1 + n2;
-        alert("el resultado es: " + resultado)
+        alerta.style.display = "inline-block";
+        alerta.innerHTML = "El resultado es: " + resultado;
     }
-    acciones.push("sumar")
+    if (!sessionStorage.getItem('acciones')) {
+        sessionStorage.setItem('acciones', JSON.stringify([]));
+    }
+    var accionesActual = JSON.parse(sessionStorage.getItem('acciones'));
+    acciones.push("Suma");
+    sessionStorage.setItem('acciones', JSON.stringify(acciones));
 }
 function restar() {
     let n1 = parseInt(document.getElementById("n1").value);
     let n2 = parseInt(document.getElementById("n2").value);
     let resultado = 0;
     resultado = n1 - n2;
-    alert("el resultado es: " + resultado)
-    acciones.push("restar")
-
+    alerta.style.display = "inline-block";
+    alerta.innerHTML = "El resultado es: " + resultado;
+    if (!sessionStorage.getItem('acciones')) {
+        sessionStorage.setItem('acciones', JSON.stringify([]));
+    }
+    var accionesActual = JSON.parse(sessionStorage.getItem('acciones'));
+    acciones.push("Resta");
+    sessionStorage.setItem('acciones', JSON.stringify(acciones));
 }
 function multiplicar() {
     let n1 = parseInt(document.getElementById("n1").value);
     let n2 = parseInt(document.getElementById("n2").value);
     let resultado = 0;
     resultado = n1 * n2;
-    alert("el resultado es: " + resultado)
-    acciones.push("multiplicar")
+    alerta.style.display = "inline-block";
+    alerta.innerHTML = "El resultado es: " + resultado;
+    if (!sessionStorage.getItem('acciones')) {
+        sessionStorage.setItem('acciones', JSON.stringify([]));
+    }
+    var accionesActual = JSON.parse(sessionStorage.getItem('acciones'));
+    acciones.push("Multiplicar");
+    sessionStorage.setItem('acciones', JSON.stringify(acciones));
 
 }
 function dividir() {
@@ -35,46 +57,83 @@ function dividir() {
     let n2 = parseInt(document.getElementById("n2").value);
     let resultado = 0;
     if (n2 == 0) {
-        alert("no se puede dividir entre 0");
+        alerta.style.display = "inline-block";
+        alerta.innerHTML = "No se puede dividir entre 0";
     }
     else {
         resultado = n1 / n2;
-        alert("el resultado es: " + resultado)
-        acciones.push("dividir")
-
+        alerta.style.display = "inline-block";
+        alerta.innerHTML = "El resultado es: " + resultado;
+        if (!sessionStorage.getItem('acciones')) {
+            sessionStorage.setItem('acciones', JSON.stringify([]));
+        }
+        var accionesActual = JSON.parse(sessionStorage.getItem('acciones'));
+        acciones.push("Dividir");
+        sessionStorage.setItem('acciones', JSON.stringify(acciones));
     }
 
 }
 function mensaje() {
-    let n4 = prompt("ingresa un numero");
-    let result = parseInt(n4);
-    if (isNaN(result)) {
-        alert("Ingrese un número")
-    }
-    else {
-        let resultado = "";
-        for (let i = 1; i < 11; i++) {
-            resultado += `${result} * ${i} = ${result * i}\n`;
-        }
-        alert(resultado);
+    let input = `
+    <form method = "post">
+    <input type="number" placeholder="ingresa un numero" id="n4">
+    <button type="button" onclick="ejecutar()">enviar</button>
+    </form>`;
 
-    }
+    alerta.style.display = "inline-block";
+    alerta.innerHTML = input;
 
+    // let n4 = prompt("ingresa un numero"); //div flotante o un div que oculte el contenido actual
 }
+
+function ejecutar() {
+    let result = parseInt(document.getElementById("n4").value);
+    let resultado = "";
+    for (let i = 1; i < 11; i++) {
+        resultado += `${result} * ${i} = ${result * i}` + "</br>";
+    }
+    alerta.innerHTML = resultado;
+}
+
 function moves() {
     let result = "<table>";
-    for (const element of acciones) {
-        result += "<tr><td>" + element + "</td></tr>";
+    let lista = sessionStorage.getItem("acciones".split(","));
+    let newlist = JSON.parse(lista);
+    let getid = document.getElementById("show-acciones");
+
+    for (let i = 0; i < newlist.length; i++) {
+        result += "<tr><td>" + newlist[i] + "</td></tr>";
     }
+
     result += "</table>";
-    let getid = document.getElementById("show-acciones")
-    getid.innerHTML = result
+    getid.innerHTML = result;
 }
+
 function search() {
-    let dato = document.getElementById("buscar").value;
-    let items = acciones.filter(accion => accion.toLowerCase() === dato);
-    let cantidad = items.length
-    alert("La acción " + dato + " se ha realizado " + cantidad + " veces");
+    let lista = sessionStorage.getItem("acciones".split(","));
+    let newlist = JSON.parse(lista);
+    let selectElement = document.getElementById('seleccion');
+    let selectedValue = selectElement.value;
+    let getid = document.getElementById("show-acciones");
+    let contador = 0;
+
+    for (let i = 0; i < newlist.length; i++) {
+        if (newlist[i].toLowerCase() == selectedValue) {
+            contador++;
+        }
+        getid.innerHTML = "La acción " + selectedValue + " se ha realizado " + contador + " veces";
+    }
+
 }
-//let resultadoElemento = document.getElementById("resultado");
-//resultadoElemento.innerHTML = mensaje;
+function perfil() {
+    nombre = prompt("Ingrese su nombre");
+    user = prompt('Ingrese su usuario');
+}
+
+function info() {
+    const object = {
+        name: nombre,
+        usuario: user,
+    }
+    alert("Hola " + object.name + " tu usuario es: " + object.usuario);
+}

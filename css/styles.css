@@ -5,13 +5,23 @@
 
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
+    height: 100vh;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 /* Estilos para etiquetas y entradas */
@@ -36,14 +46,13 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin-right: 10px;
-    /* Agrega margen derecho para separar los botones */
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #b4689e;
 }
 
-/* Estilos para el contenedor de botones */
 .button-container {
     display: flex;
     justify-content: space-between;
@@ -68,4 +77,32 @@ td {
 
 tr:nth-child(even) {
     background-color: #be8aa5;
+}
+
+.select {
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    width: 110px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    background-image: linear-gradient(90deg, #b86274 0%, #b683a1 100%);
+    color: #ffffff;
+}
+
+select:focus {
+    border-color: #ff4081;
+}
+
+option {
+    background-color: #fce4ec;
+    color: #1e1c1d;
+    display: flex;
+    text-align: center;
 }
