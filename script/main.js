@@ -129,33 +129,6 @@ async function frases() {
     try {
         const response = await fetch("https://api.chucknorris.io/jokes/random");
         if (!response.ok) {
-            throw new Error('La solicitud falló');
-        }
-        
-        const data = await response.json();
-        const humor = data.value; 
-        
-        await Swal.fire({
-            title: 'Frases!',
-            text: humor,
-            icon: 'info',
-            confirmButtonText: 'Cool'
-        });
-    } catch (error) {
-        console.error('Error:', error);
-        // Manejar el error aquí, por ejemplo, mostrando un mensaje de error al usuario
-        Swal.fire({
-            title: 'Error',
-            text: 'Hubo un error al obtener la frase de Chuck Norris. Por favor, inténtalo de nuevo más tarde.',
-            icon: 'error',
-            confirmButtonText: 'Entendido'
-        });
-    }
-}
-async function frases() {
-    try {
-        const response = await fetch("https://api.chucknorris.io/jokes/random");
-        if (!response.ok) {
             Swal.fire({
                 title: 'Error!',
                 text: "No hay frases para ti",
