@@ -87,7 +87,7 @@ tr:nth-child(even) {
 }
 
 select {
-    width: 110px;
+    width: 120px;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
